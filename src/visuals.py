@@ -11,6 +11,7 @@ def tabular_summary(seconds):
         ["Sample Standard Deviation: ", f"{seconds.std():.3f}"],
         ["Range: ", f"{seconds.max() - seconds.min():.3f}"],
         ["Q1: ", f"{seconds.quantile(0.25):.3f}"],
+        ["Q2: ", f"{seconds.quantile(0.50):.3f}"],
         ["Q3: ", f"{seconds.quantile(0.75):.3f}"],
     ]
 
@@ -28,7 +29,7 @@ def tabular_summary(seconds):
     table.scale(1,2)
 
     ax.set_title("Library - Split Time Tabular Summary (seconds)", pad = 10)
-    fig.savefig("library_summary.png", dpi = 300, bbox_inches = "tight")
+    fig.savefig("library_TS.png", dpi = 300, bbox_inches = "tight")
 
 
 # relative frequency histogram
