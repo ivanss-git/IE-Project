@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from matplotlib.ticker import PercentFormatter
 import numpy as np
 import pandas as pd
 
@@ -49,8 +48,27 @@ def relative_frequency_histogram(seconds):
         ylabel = "Relative Frequency",
     )
 
+    fig.savefig("library_RFH.png", dpi = 300, bbox_inches = "tight")
 
-    ax.yaxis.set_major_formatter(PercentFormatter(xmax=1))
-    
-    fig.savefig("library_histogram.png", dpi = 300, bbox_inches = "tight")
+
 # cumulative relative frequency graph
+def cumulative_relative_frequency_histogram(seconds):
+    fig, ax = plt.subplots()
+
+    ax.hist(
+        seconds,
+        bins = 8,
+        weights = np.ones(len(seconds)) / len(seconds),
+        cumulative = True,
+        edgecolor = "white",
+    )
+
+    ax.set(
+        title = "Library - Cumulative Relative Frequency",
+        xlabel = "Time between arrivals (seconds)",
+        ylabel = "Cummulative Relative Frequency",
+        ylim = (0,1),
+    )
+
+    fig.savefig("library_CRF.png", dpi = 300, bbox_inches = "tight")
+ 
