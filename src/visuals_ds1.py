@@ -29,7 +29,25 @@ def tabular_summary(temperature):
     table.scale(1,2)
 
     ax.set_title("Thermometry - Body Temperature Tabular Summary (Fahrenheit)", pad = 10)
-    fig.savefig("visuals/temperature_TS.png", dpi = 300, bbox_inches = "tight")
+    fig.savefig("visuals/temp_TS.png", dpi = 300, bbox_inches = "tight")
 
 # relative frequency histogram
+def relative_frequency_histogram(temperature):
+    fig, ax = plt.subplots()
+
+    ax.hist(
+        temperature,
+        bins = 8,
+        weights = np.ones(len(temperature)) / len(temperature),
+        edgecolor = "white", 
+    )
+
+    ax.set(
+        title = "Body Temperature - Relative Frequency Histogram",
+        xlabel = "Temperature (Fahrenheit)",
+        ylabel = "Relative Frequency",
+    )
+
+    fig.savefig("visuals/temp_RFH.png", dpi = 300, bbox_inches = "tight")
+
 # cumulative relative frequency graph
