@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from src.processing import df
+from src.processing_ds2 import df
 from src.visuals import tabular_summary, relative_frequency_histogram, cumulative_relative_frequency_graph
 
 tabular_summary(df["Split Time"])
