@@ -53,16 +53,13 @@ def relative_frequency_histogram(seconds):
 
 
 # cumulative relative frequency graph
-def cumulative_relative_frequency_histogram(seconds):
+def cumulative_relative_frequency_graph(seconds):
     fig, ax = plt.subplots()
 
-    ax.hist(
-        seconds,
-        bins = 8,
-        weights = np.ones(len(seconds)) / len(seconds),
-        cumulative = True,
-        edgecolor = "white",
-    )
+    counts, edges = np.histogram(seconds, bins = 8)
+    cumulative = np.cumsum(counts) / len(seconds)
+
+    ax.plot(edges, np.insert(cumulative, 0, 0), marker = "o")
 
     ax.set(
         title = "Library - Cumulative Relative Frequency",
@@ -71,5 +68,5 @@ def cumulative_relative_frequency_histogram(seconds):
         ylim = (0,1),
     )
 
-    fig.savefig("library_CRF.png", dpi = 300, bbox_inches = "tight")
+    fig.savefig("library_CRFG.png", dpi = 300, bbox_inches = "tight")
  
