@@ -10,17 +10,17 @@ This repository contains the data and implementation of graphs for the final pro
 
 ## Report Structure
 
-- 1) A cover page
-- 2) A section “Data Collection” to describe the data collection processes for both Data Set I and II with
+- A cover page
+- A section “Data Collection” to describe the data collection processes for both Data Set I and II with
 sufficient details that readers could replicate the data collection.
-- 3) A section titled “Descriptive Statistical Analysis” that presents the calculations and results for the
+- A section titled “Descriptive Statistical Analysis” that presents the calculations and results for the
 sample mean, sample median, sample standard deviation, sample range, and quartiles (Q1, Q2, and
 Q3), as well as a tabular summary, a relative frequency histogram, and a cumulative relative frequency
 graph. Calculations may be performed using Excel or other software. If software is used, students may
 upload supplementary files showing the calculations along with the final project report.
-- 4) A section “Conclusion” to discuss any findings or observations or interpretations that the students
+- A section “Conclusion” to discuss any findings or observations or interpretations that the students
 obtained through the descriptive statistical analysis.
-- 5) A section “Appendix” to include all the original data. If only part of a large data set was used in
+- A section “Appendix” to include all the original data. If only part of a large data set was used in
 the project, then only that part needs to be included.
 
 ## Grading Objective (5 = Exemplary)
