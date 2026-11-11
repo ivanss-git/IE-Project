@@ -1,9 +1,6 @@
 import os 
 import pandas as pd
 
-TEMPERATURE = 'Temperature'
-GENDER = 'Gender'
-HEARTRATE = 'Heartrate'
 
 # checking to make sure the data is correct
 df = pd.read_csv('data/thermometry.csv')
