@@ -25,6 +25,7 @@ df = pd.read_csv(
     index_col='Lap', 
     converters={'Total Time': time_to_seconds, 'Split Time': time_to_seconds})
 
+df = df.iloc[1:].copy()
 
 # veryfying that the csv file data type matches
 print(f"Column Types: {df.dtypes}")
