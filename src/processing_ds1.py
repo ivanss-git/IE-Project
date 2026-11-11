@@ -1,6 +1,10 @@
 import os 
 import pandas as pd
 
+TEMPERATURE = 'Temperature'
+GENDER = 'Gender'
+HEARTRATE = 'Heartrate'
+
 # checking to make sure the data is correct
 df = pd.read_csv('data/thermometry.csv')
 temperature = df["body.temp"]
@@ -12,3 +16,51 @@ print(f"Column Types: {df.dtypes}")
 print(f"\nSample of first 10 entries: {df[:10]}")
 print(f"\nRandom Sample of 10 entries: {df.sample(n=10)}")
 
+# (3) “Descriptive Statistical Analysis” for calculations and results
+# sample mean
+def sample_mean(df):
+    sample_mean = temperature.mean()
+
+    print(f"Sample Mean: {sample_mean}")
+
+sample_mean(df)
+
+# sample median
+def sample_median(df):
+    sample_median = temperature.median()
+
+    print(f"Sample Median: {sample_median}")
+
+sample_median(df)
+
+# sample standard deviation
+def sample_standard_deviation(df):
+    sample_stdev = temperature.std()
+
+    print(f"Sample Standard Deviation: {sample_stdev}")
+
+sample_standard_deviation(df)
+
+# sample range
+def sample_range(df):
+    sample_max = temperature.max()
+    sample_min = temperature.min()
+    sample_range = temperature.max() - temperature.min()
+
+    print(f"Sample Max: {sample_max}")
+    print(f"Sample Min: {sample_min}")
+    print(f"Sample Range: {sample_range}")
+
+sample_range(df)
+
+# quartiles (Q1, Q2, Q3)
+def quartiles(df):
+    temp_q1 = temperature.quantile(0.25)
+    temp_q2 = temperature.quantile(0.50)
+    temp_q3 = temperature.quantile(0.75)
+
+    print(f"Temperature Q1: {temp_q1}")
+    print(f"Temperature Q2: {temp_q2}")
+    print(f"Temperature Q3: {temp_q3}")
+
+quartiles(df)
