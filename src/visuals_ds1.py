@@ -51,3 +51,20 @@ def relative_frequency_histogram(temperature):
     fig.savefig("visuals/temp_RFH.png", dpi = 300, bbox_inches = "tight")
 
 # cumulative relative frequency graph
+def cumulative_relative_frequency_graph(temperature):
+    fig, ax = plt.subplots()
+
+    counts, edges = np.histogram(temperature, bins = 8)
+    cumulative = np.cumsum(counts) / len(temperature)
+
+    ax.plot(edges, np.insert(cumulative, 0, 0), marker = "o")
+
+    ax.set(
+        title = "Body Temp - Cumulative Relative Frequency",
+        xlabel = "Temperature (Fahrenheit)",
+        ylabel = "Cumulative Relative Frequency",
+        ylim = (0,1),
+    )
+
+    fig.savefig("visuals/temp_CRFG.png", dpi = 300, bbox_inches = "tight")
+ 

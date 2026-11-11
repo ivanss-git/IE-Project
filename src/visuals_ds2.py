@@ -64,7 +64,7 @@ def cumulative_relative_frequency_graph(seconds):
     ax.set(
         title = "Library - Cumulative Relative Frequency",
         xlabel = "Time between arrivals (seconds)",
-        ylabel = "Cummulative Relative Frequency",
+        ylabel = "Cumulative Relative Frequency",
         ylim = (0,1),
     )
 
