@@ -15,31 +15,31 @@ print(f"\nRandom Sample of 10 entries: {df.sample(n=10)}")
 
 # (3) “Descriptive Statistical Analysis” for calculations and results
 # sample mean
-def sample_mean(df):
+def sample_mean():
     sample_mean = temperature.mean()
 
     print(f"Sample Mean: {sample_mean}")
 
-sample_mean(df)
+sample_mean()
 
 # sample median
-def sample_median(df):
+def sample_median():
     sample_median = temperature.median()
 
     print(f"Sample Median: {sample_median}")
 
-sample_median(df)
+sample_median()
 
 # sample standard deviation
-def sample_standard_deviation(df):
+def sample_standard_deviation():
     sample_stdev = temperature.std()
 
     print(f"Sample Standard Deviation: {sample_stdev}")
 
-sample_standard_deviation(df)
+sample_standard_deviation()
 
 # sample range
-def sample_range(df):
+def sample_range():
     sample_max = temperature.max()
     sample_min = temperature.min()
     sample_range = temperature.max() - temperature.min()
@@ -48,10 +48,10 @@ def sample_range(df):
     print(f"Sample Min: {sample_min}")
     print(f"Sample Range: {sample_range}")
 
-sample_range(df)
+sample_range()
 
 # quartiles (Q1, Q2, Q3)
-def quartiles(df):
+def quartiles():
     temp_q1 = temperature.quantile(0.25)
     temp_q2 = temperature.quantile(0.50)
     temp_q3 = temperature.quantile(0.75)
@@ -60,4 +60,4 @@ def quartiles(df):
     print(f"Temperature Q2: {temp_q2}")
     print(f"Temperature Q3: {temp_q3}")
 
-quartiles(df)
+quartiles()
