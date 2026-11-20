@@ -1,15 +1,33 @@
 import pandas as pd
+import numpy as np
 
 
 # checking to make sure the data is correct
 df = pd.read_csv('data/births14.csv')
+print(f"\nTotal rows: {len(df)}")
+
+counts = df["premie"].value_counts(dropna=False)
+counts = counts.rename(index={"premie": "premature"})
+print()
+print(counts.rename_axis("Birth Classification"))
+
 eligible = df["premie"] == "full term"
+raw_weights = df.loc[eligible, "weight"]
+numeric_weights = pd.to_numeric(raw_weights, errors="coerce")
+finite_weights = numeric_weights[np.isfinite(numeric_weights)]
 birth_weight = pd.to_numeric(df.loc[eligible, "weight"], errors="coerce").dropna()
 
-print(f"Total usable birth weights: {len(birth_weight)}")
-print(f"Column Types: {birth_weight.dtype}")
-print(f"\nSample of first 10 entries: {birth_weight.head(10)}")
-print(f"\nRandom Sample of 10 entries: {birth_weight.sample(n=10)}")
+
+print(f"Full-term rows: {len(raw_weights)}")
+print(f"Missing weights: {raw_weights.isna().sum()}")
+print(f"Nonnumeric weights: {(raw_weights.notna() & numeric_weights.isna()).sum()}")
+print(f"Infinite weights: {np.isinf(numeric_weights).sum()}")
+print(f"Nonpositive weights: {(finite_weights <= 0).sum()}")
+print(f"Usable weights: {len(birth_weight)}")
+print(f"Minimum and maximum (lb): {birth_weight.min():.2f}, {birth_weight.max():.2f}")
+print(f"\nFirst 10 usable weights:\n{birth_weight.head(10)}")
+print(f"\nRandom Sample of 10 usable weights:\n{birth_weight.sample(n=min(10, len(birth_weight)), random_state=42)}\n")
+
 
 # (3) “Descriptive Statistical Analysis” for calculations and results
 # sample mean
