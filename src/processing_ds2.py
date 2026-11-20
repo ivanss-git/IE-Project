@@ -1,5 +1,5 @@
-import os
 import pandas as pd
+import numpy as np
 
 TOTAL_TIME = 'Total Time'
 SPLIT_TIME = 'Split Time'
@@ -25,9 +25,20 @@ df = pd.read_csv(
     index_col='Lap', 
     converters={'Total Time': time_to_seconds, 'Split Time': time_to_seconds})
 
+print(f"Recorded laps: {len(df)}")
+print(f"Duplicate lap numbers: {df.index.duplicated().sum()}")
+calculated_splits = df[TOTAL_TIME].diff().iloc[1:]
 df = df.iloc[1:].copy()
 
 # veryfying that the csv file data type matches
+times = df[[TOTAL_TIME, SPLIT_TIME]]
+print(f"Missing times:\n{times.isna().sum()}")
+print(f"Infinite times:\n{np.isinf(times).sum()}")
+print(f"Negative split times: {(df[SPLIT_TIME] < 0).sum()}")
+
+split_matches = np.isclose(df[SPLIT_TIME], calculated_splits, atol=0.001, rtol=0)
+print(f"Splits that differ from total time changes: {(~split_matches).sum()}")
+
 print(f"Column Types: {df.dtypes}")
 print(f"Total Observations: {len(df)}")
 print(f"\nSample of first 10 entries: {df[:10]}")
