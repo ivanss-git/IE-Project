@@ -30,6 +30,8 @@ print(f"Duplicate lap numbers: {df.index.duplicated().sum()}")
 calculated_splits = df[TOTAL_TIME].diff().iloc[1:]
 df = df.iloc[1:].copy()
 
+df[["Split Time"]].to_csv("data/library_entry_intervals.csv", index_label="Lap", header=["Split Time"])
+
 # veryfying that the csv file data type matches
 times = df[[TOTAL_TIME, SPLIT_TIME]]
 print(f"Missing times:\n{times.isna().sum()}")

@@ -17,6 +17,7 @@ numeric_weights = pd.to_numeric(raw_weights, errors="coerce")
 finite_weights = numeric_weights[np.isfinite(numeric_weights)]
 birth_weight = pd.to_numeric(df.loc[eligible, "weight"], errors="coerce").dropna()
 
+birth_weight.to_csv("data/full_term_birth_weights.csv",index=False, header=["Birth Weight (lb)"])
 
 print(f"Full-term rows: {len(raw_weights)}")
 print(f"Missing weights: {raw_weights.isna().sum()}")
