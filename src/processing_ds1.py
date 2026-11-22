@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import math 
 
 
 # checking to make sure the data is correct
@@ -19,7 +20,6 @@ birth_weight = pd.to_numeric(df.loc[eligible, "weight"], errors="coerce").dropna
 
 birth_weight.to_csv("data/full_term_birth_weights.csv",index=False, header=["Birth Weight (lb)"])
 
-print(f"Full-term rows: {len(raw_weights)}")
 print(f"Missing weights: {raw_weights.isna().sum()}")
 print(f"Nonnumeric weights: {(raw_weights.notna() & numeric_weights.isna()).sum()}")
 print(f"Infinite weights: {np.isinf(numeric_weights).sum()}")
@@ -28,6 +28,36 @@ print(f"Usable weights: {len(birth_weight)}")
 print(f"Minimum and maximum (lb): {birth_weight.min():.2f}, {birth_weight.max():.2f}")
 print(f"\nFirst 10 usable weights:\n{birth_weight.head(10)}")
 print(f"\nRandom Sample of 10 usable weights:\n{birth_weight.sample(n=min(10, len(birth_weight)), random_state=42)}\n")
+
+sorted_weights = sorted(raw_weights)
+summation = np.sum(sorted_weights)
+mean = summation / len(sorted_weights)
+n = len(sorted_weights)
+mid = n // 2
+if n % 2 == 0:
+    median = (sorted_weights[mid - 1] + sorted_weights[mid]) / 2
+else: 
+    median = sorted_weights[mid]
+
+even_or_odd = "Even" if len(raw_weights) % 2 == 0 else "Odd"
+
+squared_diffs = sum((x - mean) ** 2 for x in sorted_weights)
+variance = squared_diffs / (n-1)
+stdev = math.sqrt(variance)
+
+print("\nSTART OF TEST")
+print(f"Sample is: {even_or_odd}")
+print(f"Middle observation in sorted set : {sorted_weights[438]} ")
+print(f"Sorted weights (index 430 to index 440): {sorted_weights[430:440]}")
+print(f"Sample summation (python): {sum(sorted_weights)}")
+print(f"Sample summation (numpy): {np.sum(raw_weights)}")
+print(f"Sample mean: {mean}")
+print(f"Sample Median: {median}")
+print(f"Sample Max: {sorted_weights[875]}")
+print(f"Sample Min: {sorted_weights[0]}")
+print(f"Sample Range: {(sorted_weights[875]) - sorted_weights[0]}")
+print(f"Sample Standard Deviation: {stdev}")
+print(" END OF TEST\n")
 
 
 # (3) “Descriptive Statistical Analysis” for calculations and results
