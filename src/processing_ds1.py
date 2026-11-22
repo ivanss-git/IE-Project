@@ -29,11 +29,13 @@ print(f"Minimum and maximum (lb): {birth_weight.min():.2f}, {birth_weight.max():
 print(f"\nFirst 10 usable weights:\n{birth_weight.head(10)}")
 print(f"\nRandom Sample of 10 usable weights:\n{birth_weight.sample(n=min(10, len(birth_weight)), random_state=42)}\n")
 
+# Manual calculations
 sorted_weights = sorted(raw_weights)
 summation = np.sum(sorted_weights)
 mean = summation / len(sorted_weights)
 n = len(sorted_weights)
 mid = n // 2
+
 if n % 2 == 0:
     median = (sorted_weights[mid - 1] + sorted_weights[mid]) / 2
 else: 
@@ -47,7 +49,7 @@ stdev = math.sqrt(variance)
 
 print("\nSTART OF TEST")
 print(f"Sample is: {even_or_odd}")
-print(f"Middle observation in sorted set : {sorted_weights[438]} ")
+print(f"Middle two weights: {sorted_weights[437]} and {sorted_weights[438]} lb ")
 print(f"Sorted weights (index 430 to index 440): {sorted_weights[430:440]}")
 print(f"Sample summation (python): {sum(sorted_weights)}")
 print(f"Sample summation (numpy): {np.sum(raw_weights)}")

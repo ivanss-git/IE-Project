@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import math
 
 TOTAL_TIME = 'Total Time'
 SPLIT_TIME = 'Split Time'
@@ -46,6 +47,38 @@ print(f"Total Observations: {len(df)}")
 print(f"\nSample of first 10 entries: {df[:10]}")
 print(f"\nRandom Sample of 10 entries: {df.sample(n=10)}")
 
+# Manual calculations
+split_times = df[SPLIT_TIME]
+sorted_splits = sorted(split_times)
+summation = np.sum(sorted_splits)
+mean = summation / len(sorted_splits)
+n = len(sorted_splits)
+mid = n // 2
+
+if n % 2 == 0:
+    median = (sorted_splits[mid - 1] + sorted_splits[mid]) / 2
+else: 
+    median = sorted_splits[mid]
+
+even_or_odd = "Even" if len(split_times) % 2 == 0 else "Odd"
+
+squared_diffs = sum((x - mean) ** 2 for x in sorted_splits) 
+variance = squared_diffs / (n-1)
+stdev = math.sqrt(variance)
+
+print("\nSTART OF TEST")
+print(f"Sample is: {even_or_odd}")
+print(f"Middle two observation in sorted set : {sorted_splits[mid - 1]} and {sorted_splits[mid]} ")
+print(f"Sorted splits (index {mid - 8} to {mid + 1}): {sorted_splits[mid - 8: mid + 2]}")
+print(f"Sample summation (python): {sum(sorted_splits)}")
+print(f"Sample summation (numpy): {np.sum(split_times)}")
+print(f"Sample mean: {mean}")
+print(f"Sample Median: {median}")
+print(f"Sample Max: {sorted_splits[n - 1]}")
+print(f"Sample Min: {sorted_splits[0]}")
+print(f"Sample Range: {(sorted_splits[n - 1]) - sorted_splits[0]}")
+print(f"Sample Standard Deviation: {stdev}")
+print(" END OF TEST\n")
 
 # (3) “Descriptive Statistical Analysis” for calculations and results
 # sample mean
